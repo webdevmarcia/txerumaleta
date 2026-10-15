@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------
+   TEMA TXERUMALETA — cores inspiradas na bandeira de Cabo Verde
+------------------------------------------------------------ */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-50: #eef3fc;
+  --color-brand-100: #d9e4f7;
+  --color-brand-200: #b3c8ee;
+  --color-brand-300: #7fa1df;
+  --color-brand-400: #4a77cc;
+  --color-brand-500: #1f55b8;
+  --color-brand-600: #0a45a6;
+  --color-brand-700: #003893;
+  --color-brand-800: #002c74;
+  --color-brand-900: #001f52;
+
+  --color-sun-300: #fbe57a;
+  --color-sun-400: #f7d116;
+  --color-sun-500: #e0bb00;
+
+  --color-coral-500: #cf2027;
+  --color-coral-600: #b0161c;
+
+  --color-ink: #0f172a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-50 font-sans text-slate-800 antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display text-ink;
+  }
+}
+
+/* ------------------------------------------------------------
+   COMPONENTES BASE
+------------------------------------------------------------ */
+@layer components {
+  .card {
+    @apply rounded-2xl border border-slate-200/80 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)];
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500;
+  }
+  .btn > svg {
+    @apply shrink-0;
+  }
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs;
+  }
+  .btn-lg {
+    @apply px-6 py-3 text-base;
+  }
+  .btn-primary {
+    @apply bg-brand-700 text-white hover:bg-brand-800;
+  }
+  .btn-sun {
+    @apply bg-sun-400 text-ink hover:bg-sun-300;
+  }
+  .btn-secondary {
+    @apply border border-slate-300 bg-white text-slate-800 hover:bg-slate-50;
+  }
+  .btn-outline {
+    @apply border border-brand-700 text-brand-700 hover:bg-brand-50;
+  }
+  .btn-ghost {
+    @apply text-slate-600 hover:bg-slate-100 hover:text-slate-900;
+  }
+  .btn-danger {
+    @apply bg-coral-500 text-white hover:bg-coral-600;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition focus:border-brand-500 focus:ring-4 focus:ring-brand-100 focus:outline-none;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-slate-700;
+  }
+  .hint {
+    @apply mt-1 text-xs text-slate-500;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700;
+  }
+  .chip-toggle {
+    @apply inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-slate-300 bg-white px-3 py-1.5 text-sm text-slate-700 transition select-none hover:border-brand-400;
+  }
+  .chip-toggle[data-active="true"] {
+    @apply border-brand-700 bg-brand-700 text-white;
+  }
+
+  .nav-link {
+    @apply flex flex-col items-center gap-0.5 rounded-xl px-3 py-1.5 text-[11px] font-medium text-slate-500 transition hover:text-brand-700;
+  }
+  .nav-link.active {
+    @apply text-brand-700;
+  }
+
+  .menu-item {
+    @apply flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm text-slate-700 hover:bg-slate-100;
+  }
+
+  /* faixa branco-vermelho-branco da bandeira */
+  .flag-stripe {
+    background: linear-gradient(
+      to bottom,
+      #fff 0 33.33%,
+      var(--color-coral-500) 33.33% 66.66%,
+      #fff 66.66% 100%
+    );
+  }
+}
+
+/* ------------------------------------------------------------
+   ANIMAÇÕES
+------------------------------------------------------------ */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.25s ease-out both;
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.animate-pop-in {
+  animation: pop-in 0.18s ease-out both;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
